@@ -76,7 +76,14 @@ class WatchLogCommand extends Command
      */
     protected function shouldSkipLine(string $line): bool
     {
-        // Skip stack trace lines: "#0 /path/..."
+        $trimmed = trim($line);
+
+        // Skip stacktrace header
+        if ($trimmed === '[stacktrace]') {
+            return true;
+        }
+
+        // Skip stack trace lines like "#0 /path/..."
         if (preg_match('/^\s*#\d+/', $line)) {
             return true;
         }
@@ -86,8 +93,13 @@ class WatchLogCommand extends Command
             return true;
         }
 
-        // Skip empty or whitespace-only lines
-        if (trim($line) === '') {
+        // Skip JSON exception continuation lines
+        if (str_starts_with($trimmed, '{') || str_starts_with($trimmed, '}')) {
+            return true;
+        }
+
+        // Skip empty lines
+        if ($trimmed === '') {
             return true;
         }
 
