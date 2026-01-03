@@ -8,46 +8,89 @@ use Birenjung\LogWatcher\Support\Colorizer;
 
 class WatchLogCommand extends Command
 {
-    protected $signature = 'log:watch {channel?}';
+    protected $signature = 'log:watch 
+        {channel? : Log channel to watch} 
+        {--verbose : Show full stack traces and framework noise}';
+
     protected $description = 'Watch a Laravel log channel with colored output';
 
     public function handle(): int
     {
         $channel = $this->argument('channel')
-            ?? config('log-watcher.default_channel');
+            ?? config('log-watcher.default_channel', config('logging.default'));
 
         $path = LogPathResolver::resolve($channel);
 
         $this->info("Watching log channel: {$channel}");
         $this->line(str_repeat('-', 60));
 
-        if (PHP_OS_FAMILY === 'Windows') {
-            $this->watchWindows($path);
-        } else {
-            $this->watchUnix($path);
+        if (! $this->option('verbose')) {
+            $this->comment('Clean mode enabled. Use --verbose to show full stack traces.');
         }
+
+        $this->watch($path);
 
         return self::SUCCESS;
     }
 
-    protected function watchUnix(string $path): void
+    /**
+     * Unified watcher for all OS families.
+     */
+    protected function watch(string $path): void
     {
-        $lines = config('log-watcher.tail_lines', 50);
+        $lines = (int) config('log-watcher.tail_lines', 50);
 
-        $handle = popen("tail -n {$lines} -f {$path}", 'r');
+        $command = match (PHP_OS_FAMILY) {
+            'Windows' => "powershell -Command \"Get-Content -Path '{$path}' -Wait -Tail {$lines}\"",
+            default   => "tail -n {$lines} -f {$path}",
+        };
+
+        $handle = popen($command, 'r');
+
+        if (! $handle) {
+            $this->error('Unable to open log file for reading.');
+            return;
+        }
 
         while (! feof($handle)) {
-            echo Colorizer::colorize(fgets($handle));
+            $line = fgets($handle);
+
+            if ($line === false) {
+                continue;
+            }
+
+            if (! $this->option('verbose') && $this->shouldSkipLine($line)) {
+                continue;
+            }
+
+            $this->output->write(
+                Colorizer::colorize($line)
+            );
         }
+
+        pclose($handle);
     }
 
-    protected function watchWindows(string $path): void
+    /**
+     * Determines whether a line should be hidden in clean mode.
+     */
+    protected function shouldSkipLine(string $line): bool
     {
-        $command = "Get-Content -Path \"$path\" -Wait -Tail 50";
-        $process = popen("powershell -Command \"$command\"", 'r');
-
-        while (! feof($process)) {
-            echo Colorizer::colorize(fgets($process));
+        // Skip stack trace lines: "#0 /path/..."
+        if (preg_match('/^\s*#\d+/', $line)) {
+            return true;
         }
+
+        // Skip vendor/framework noise
+        if (str_contains($line, DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR)) {
+            return true;
+        }
+
+        // Skip empty or whitespace-only lines
+        if (trim($line) === '') {
+            return true;
+        }
+
+        return false;
     }
 }
