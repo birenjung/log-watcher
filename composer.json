@@ -1,8 +1,16 @@
 {
   "name": "birenjung/log-watcher",
-  "description": "Dev-only Laravel log watcher with colored output",
+  "description": "Terminal-first, channel-aware log watcher for Laravel developers",
   "type": "library",
   "license": "MIT",
+  "keywords": [
+    "laravel",
+    "logs",
+    "logging",
+    "artisan",
+    "developer-tools",
+    "terminal"
+  ],
   "require": {
     "php": "^8.2",
     "illuminate/support": "^12.0",
@@ -20,5 +28,8 @@
       ]
     }
   },
-  "minimum-stability": "stable"
+  "support": {
+    "issues": "https://github.com/birenjung/log-watcher/issues",
+    "source": "https://github.com/birenjung/log-watcher"
+  }
 }
