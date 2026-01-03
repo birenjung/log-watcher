@@ -8,10 +8,9 @@ use Birenjung\LogWatcher\Support\Colorizer;
 
 class WatchLogCommand extends Command
 {
-    protected $signature = 'log:watch 
-    {channel? : Log channel to watch} 
-    {--full : Show full stack traces and framework noise}';
-
+    protected $signature = 'log:watch
+        {channel? : Log channel to watch}
+        {--full : Show full stack traces and framework noise}';
 
     protected $description = 'Watch a Laravel log channel with colored output';
 
@@ -25,8 +24,7 @@ class WatchLogCommand extends Command
         $this->info("Watching log channel: {$channel}");
         $this->line(str_repeat('-', 60));
 
-        if (! $this->option('full')
-) {
+        if (! $this->option('full')) {
             $this->comment('Clean mode enabled. Use --full to show full stack traces.');
         }
 
@@ -61,8 +59,7 @@ class WatchLogCommand extends Command
                 continue;
             }
 
-            if (! $this->option('full')
- && $this->shouldSkipLine($line)) {
+            if (! $this->option('full') && $this->shouldSkipLine($line)) {
                 continue;
             }
 
@@ -97,7 +94,10 @@ class WatchLogCommand extends Command
         }
 
         // Skip JSON exception continuation lines
-        if (str_starts_with($trimmed, '{') || str_starts_with($trimmed, '}')) {
+        if (
+            str_starts_with($trimmed, '{') ||
+            str_starts_with($trimmed, '}')
+        ) {
             return true;
         }
 
