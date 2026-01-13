@@ -17,7 +17,7 @@ class LogPathResolver
 
         $config = $channels[$channel];
 
-        // ✅ Handle stack channels
+        // ✅ Handle stack channels  - ok
         if (($config['driver'] ?? null) === 'stack') {
             foreach ($config['channels'] as $nestedChannel) {
                 if (! isset($channels[$nestedChannel])) {
