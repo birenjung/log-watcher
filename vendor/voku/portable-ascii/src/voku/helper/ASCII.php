@@ -828,13 +828,15 @@ final class ASCII
                             &&
                             \strpos($str, $fiveChars) !== false
                         ) {
-                            // DEBUG
+                            // debug
+
                             //\var_dump($str, $fiveChars, $REPLACE_HELPER_CACHE[$cacheKey][$fiveChars]);
 
                             $charDone[$fiveChars] = true;
                             $str = \str_replace($fiveChars, $REPLACE_HELPER_CACHE[$cacheKey][$fiveChars], $str);
 
-                            // DEBUG
+                            // debug
+
                             //\var_dump($str, "\n");
                         }
                     }
@@ -856,13 +858,15 @@ final class ASCII
                             &&
                             \strpos($str, $fourChars) !== false
                         ) {
-                            // DEBUG
+                            // debug
+
                             //\var_dump($str, $fourChars, $REPLACE_HELPER_CACHE[$cacheKey][$fourChars]);
 
                             $charDone[$fourChars] = true;
                             $str = \str_replace($fourChars, $REPLACE_HELPER_CACHE[$cacheKey][$fourChars], $str);
 
-                            // DEBUG
+                            // debug
+
                             //\var_dump($str, "\n");
                         }
                     }
@@ -883,13 +887,15 @@ final class ASCII
                         &&
                         \strpos($str, $threeChars) !== false
                     ) {
-                        // DEBUG
+                        // debug
+
                         //\var_dump($str, $threeChars, $REPLACE_HELPER_CACHE[$cacheKey][$threeChars]);
 
                         $charDone[$threeChars] = true;
                         $str = \str_replace($threeChars, $REPLACE_HELPER_CACHE[$cacheKey][$threeChars], $str);
 
-                        // DEBUG
+                        // debug
+
                         //\var_dump($str, "\n");
                     }
                 }
@@ -909,13 +915,15 @@ final class ASCII
                         &&
                         \strpos($str, $twoChars) !== false
                     ) {
-                        // DEBUG
+                        // debug
+
                         //\var_dump($str, $twoChars, $REPLACE_HELPER_CACHE[$cacheKey][$twoChars]);
 
                         $charDone[$twoChars] = true;
                         $str = \str_replace($twoChars, $REPLACE_HELPER_CACHE[$cacheKey][$twoChars], $str);
 
-                        // DEBUG
+                        // debug
+
                         //\var_dump($str, "\n");
                     }
                 }
@@ -929,13 +937,15 @@ final class ASCII
                     &&
                     \strpos($str, $char) !== false
                 ) {
-                    // DEBUG
+                    // debug
+
                     //\var_dump($str, $char, $REPLACE_HELPER_CACHE[$cacheKey][$char]);
 
                     $charDone[$char] = true;
                     $str = \str_replace($char, $REPLACE_HELPER_CACHE[$cacheKey][$char], $str);
 
-                    // DEBUG
+                    // debug
+
                     //\var_dump($str, "\n");
                 }
             }

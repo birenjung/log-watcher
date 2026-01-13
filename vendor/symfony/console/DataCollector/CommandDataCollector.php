@@ -48,7 +48,8 @@ final class CommandDataCollector extends DataCollector
                 OutputInterface::VERBOSITY_NORMAL => 'normal',
                 OutputInterface::VERBOSITY_VERBOSE => 'verbose',
                 OutputInterface::VERBOSITY_VERY_VERBOSE => 'very verbose',
-                OutputInterface::VERBOSITY_DEBUG => 'debug',
+                OutputInterface::VERBOSITY_debug
+ => 'debug',
             },
             'interactive' => $command->isInteractive,
             'validate_input' => !$command->ignoreValidation,

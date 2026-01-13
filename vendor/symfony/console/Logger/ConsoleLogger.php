@@ -37,7 +37,9 @@ class ConsoleLogger extends AbstractLogger
         LogLevel::WARNING => OutputInterface::VERBOSITY_NORMAL,
         LogLevel::NOTICE => OutputInterface::VERBOSITY_VERBOSE,
         LogLevel::INFO => OutputInterface::VERBOSITY_VERY_VERBOSE,
-        LogLevel::DEBUG => OutputInterface::VERBOSITY_DEBUG,
+        LogLevel::debug
+ => OutputInterface::VERBOSITY_debug
+,
     ];
     private array $formatLevelMap = [
         LogLevel::EMERGENCY => self::ERROR,
@@ -47,7 +49,8 @@ class ConsoleLogger extends AbstractLogger
         LogLevel::WARNING => self::INFO,
         LogLevel::NOTICE => self::INFO,
         LogLevel::INFO => self::INFO,
-        LogLevel::DEBUG => self::INFO,
+        LogLevel::debug
+ => self::INFO,
     ];
     private bool $errored = false;
 

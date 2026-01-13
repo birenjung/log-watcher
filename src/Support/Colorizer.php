@@ -12,7 +12,8 @@ class Colorizer
             'ERROR', 'CRITICAL', 'ALERT', 'EMERGENCY' => "\033[31m{$line}\033[0m",
             'WARNING' => "\033[33m{$line}\033[0m",
             'INFO', 'NOTICE' => "\033[34m{$line}\033[0m",
-            'DEBUG' => "\033[36m{$line}\033[0m",
+            'debug
+' => "\033[36m{$line}\033[0m",
             default => $line,
         };
     }

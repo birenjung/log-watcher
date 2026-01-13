@@ -65,7 +65,8 @@ final class CompleteCommand extends Command
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $this->isDebug = filter_var(getenv('SYMFONY_COMPLETION_DEBUG'), \FILTER_VALIDATE_BOOL);
+        $this->isDebug = filter_var(getenv('SYMFONY_COMPLETION_debug
+'), \FILTER_VALIDATE_BOOL);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

@@ -248,7 +248,8 @@ if (! function_exists('once')) {
     function once(callable $callback)
     {
         $onceable = Onceable::tryFromTrace(
-            debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 2),
+            debug_backtrace(debug
+_BACKTRACE_PROVIDE_OBJECT, 2),
             $callback,
         );
 

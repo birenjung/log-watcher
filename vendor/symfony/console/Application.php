@@ -981,7 +981,8 @@ class Application implements ResetInterface
             -1 => OutputInterface::VERBOSITY_QUIET,
             1 => OutputInterface::VERBOSITY_VERBOSE,
             2 => OutputInterface::VERBOSITY_VERY_VERBOSE,
-            3 => OutputInterface::VERBOSITY_DEBUG,
+            3 => OutputInterface::VERBOSITY_debug
+,
             default => ($shellVerbosity = 0) ?: $output->getVerbosity(),
         });
 

@@ -27,7 +27,8 @@ interface OutputInterface
     public const VERBOSITY_NORMAL = 32;
     public const VERBOSITY_VERBOSE = 64;
     public const VERBOSITY_VERY_VERBOSE = 128;
-    public const VERBOSITY_DEBUG = 256;
+    public const VERBOSITY_debug
+ = 256;
 
     public const OUTPUT_NORMAL = 1;
     public const OUTPUT_RAW = 2;

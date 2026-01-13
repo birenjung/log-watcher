@@ -194,7 +194,8 @@ Log levels are detected and colored automatically:
 
 | Level            | Color  |
 |------------------|--------|
-| DEBUG            | Cyan   |
+| debug
+            | Cyan   |
 | INFO             | Blue   |
 | WARNING          | Yellow |
 | ERROR / CRITICAL | Red    |

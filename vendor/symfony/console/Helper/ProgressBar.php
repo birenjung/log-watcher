@@ -28,12 +28,14 @@ final class ProgressBar
 {
     public const FORMAT_VERBOSE = 'verbose';
     public const FORMAT_VERY_VERBOSE = 'very_verbose';
-    public const FORMAT_DEBUG = 'debug';
+    public const FORMAT_debug
+ = 'debug';
     public const FORMAT_NORMAL = 'normal';
 
     private const FORMAT_VERBOSE_NOMAX = 'verbose_nomax';
     private const FORMAT_VERY_VERBOSE_NOMAX = 'very_verbose_nomax';
-    private const FORMAT_DEBUG_NOMAX = 'debug_nomax';
+    private const FORMAT_debug
+_NOMAX = 'debug_nomax';
     private const FORMAT_NORMAL_NOMAX = 'normal_nomax';
 
     private int $barWidth = 28;
@@ -558,7 +560,10 @@ final class ProgressBar
             // OutputInterface::VERBOSITY_QUIET: display is disabled anyway
             OutputInterface::VERBOSITY_VERBOSE => $this->max ? self::FORMAT_VERBOSE : self::FORMAT_VERBOSE_NOMAX,
             OutputInterface::VERBOSITY_VERY_VERBOSE => $this->max ? self::FORMAT_VERY_VERBOSE : self::FORMAT_VERY_VERBOSE_NOMAX,
-            OutputInterface::VERBOSITY_DEBUG => $this->max ? self::FORMAT_DEBUG : self::FORMAT_DEBUG_NOMAX,
+            OutputInterface::VERBOSITY_debug
+ => $this->max ? self::FORMAT_debug
+ : self::FORMAT_debug
+_NOMAX,
             default => $this->max ? self::FORMAT_NORMAL : self::FORMAT_NORMAL_NOMAX,
         };
     }
@@ -610,8 +615,10 @@ final class ProgressBar
             self::FORMAT_VERY_VERBOSE => ' %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s%',
             self::FORMAT_VERY_VERBOSE_NOMAX => ' %current% [%bar%] %elapsed:6s%',
 
-            self::FORMAT_DEBUG => ' %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%',
-            self::FORMAT_DEBUG_NOMAX => ' %current% [%bar%] %elapsed:6s% %memory:6s%',
+            self::FORMAT_debug
+ => ' %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%',
+            self::FORMAT_debug
+_NOMAX => ' %current% [%bar%] %elapsed:6s% %memory:6s%',
         ];
     }
 

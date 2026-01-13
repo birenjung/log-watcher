@@ -97,7 +97,8 @@ abstract class Output implements OutputInterface
 
     public function isDebug(): bool
     {
-        return self::VERBOSITY_DEBUG <= $this->verbosity;
+        return self::VERBOSITY_debug
+ <= $this->verbosity;
     }
 
     public function writeln(string|iterable $messages, int $options = self::OUTPUT_NORMAL): void
@@ -114,7 +115,8 @@ abstract class Output implements OutputInterface
         $types = self::OUTPUT_NORMAL | self::OUTPUT_RAW | self::OUTPUT_PLAIN;
         $type = $types & $options ?: self::OUTPUT_NORMAL;
 
-        $verbosities = self::VERBOSITY_QUIET | self::VERBOSITY_NORMAL | self::VERBOSITY_VERBOSE | self::VERBOSITY_VERY_VERBOSE | self::VERBOSITY_DEBUG;
+        $verbosities = self::VERBOSITY_QUIET | self::VERBOSITY_NORMAL | self::VERBOSITY_VERBOSE | self::VERBOSITY_VERY_VERBOSE | self::VERBOSITY_debug
+;
         $verbosity = $verbosities & $options ?: self::VERBOSITY_NORMAL;
 
         if ($verbosity > $this->getVerbosity()) {

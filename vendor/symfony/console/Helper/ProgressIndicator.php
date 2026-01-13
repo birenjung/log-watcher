@@ -204,7 +204,8 @@ class ProgressIndicator
             // OutputInterface::VERBOSITY_QUIET: display is disabled anyway
             OutputInterface::VERBOSITY_VERBOSE => $this->output->isDecorated() ? 'verbose' : 'verbose_no_ansi',
             OutputInterface::VERBOSITY_VERY_VERBOSE,
-            OutputInterface::VERBOSITY_DEBUG => $this->output->isDecorated() ? 'very_verbose' : 'very_verbose_no_ansi',
+            OutputInterface::VERBOSITY_debug
+ => $this->output->isDecorated() ? 'very_verbose' : 'very_verbose_no_ansi',
             default => $this->output->isDecorated() ? 'normal' : 'normal_no_ansi',
         };
     }
